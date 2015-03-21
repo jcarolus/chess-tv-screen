@@ -1,0 +1,10 @@
+body {
+	background-color: #484848;
+	color: #f1f1f1;
+	text-shadow: 2px 2px 2px #333333;
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 20px;
+	margin: 0px;
+	padding: 0px;
+	overflow: hidden;
+}

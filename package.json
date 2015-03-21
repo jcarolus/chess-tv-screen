@@ -1,0 +1,30 @@
+{
+    "name": "ChessTVScreen",
+    "appname": "Chess TV Screen",
+    "private": true,
+    "version": "0.0.1",
+    "author": {
+        "name": "Jeroen Carolus",
+        "email": "info@jwtc.nl",
+        "url": "http://www.jwtc.nl"
+    },
+    "homepage": "http://www.jwtc.nl/",
+    "description": "",
+    "categories": "Game",
+    "keywords": [
+        "Game", "Strategy", "Chess"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/jcarolus/android-chess"
+    },
+    "devDependencies": {
+        "gulp": "~3.8.11",
+        "gulp-concat": "~2.5.2",
+        "gulp-util": "~3.0.4"
+    },
+    "scripts": {
+        "prestart": "npm install",
+        "pretest": "npm install"
+    }
+}
