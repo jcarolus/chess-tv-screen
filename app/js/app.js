@@ -13,58 +13,49 @@
             loadFEN(data.FEN, 'board', 70);
             lastFEN = data.FEN;
         }
-
-        setTimeout(function() {
-            poll();
-        }, 1000);
     };
 
-    var poll = function() {
-        var timeout = 3000,
-            callBackTimeout = function() {
-                debug('Poll timed out');
-                setTimeout(function() {
-                    poll();
-                }, 5000);
-            };
-        debug('Polling...');
-        var url = pollUrl;
-        var script, head = document.head || document.getElementsByTagName("head")[0] || document.documentElement;
-        script = document.createElement("script");
-        script.async = "async";
-        script.src = url;
-        head.insertBefore(script, head.firstChild);
+    var xhrGet = function(url, onSuccess, onError) {
+        var xhr = new XMLHttpRequest();
 
-        script.onload = script.onreadystatechange = function(_, isAbort) {
-            if (isAbort || !script.readyState || /loaded|complete/.test(script.readyState)) {
-
-                // Handle memory leak in IE
-                script.onload = script.onreadystatechange = null;
-
-                // Remove the script
-                if (head && script.parentNode) {
-                    head.removeChild(script);
+        xhr.open('GET', url, true);
+        xhr.setRequestHeader('Accept', 'application/json');
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4) {
+                if (xhr.status == 200) {
+                    onSuccess(xhr.responseText);
+                } else {
+                    onError(xhr.status);
                 }
-                script = undefined;
             }
         };
 
-        if (timeout && callBackTimeout) {
-            setTimeout(function() {
-                if (script) {
-                    script.onload(0, true);
-                    callBackTimeout();
-                }
-            }, timeout);
-        }
+        xhr.send();
     };
 
-    var startPoll = function() {
-        poll();
+    var poll = function() {
+
+        debug('Polling...');
+        var url = pollUrl;
+
+        xhrGet(url, function(responseText) {
+            try {
+                ChessCallBack(JSON.parse(responseText));
+            } catch (ex) {
+
+            }
+            setTimeout(function() {
+                poll();
+            }, 1000);
+        }, function(status) {
+            setTimeout(function() {
+                poll();
+            }, 5000);
+        });
     };
 
     window.start = function() {
-        startPoll();
+        poll();
     };
 
 })(window);
