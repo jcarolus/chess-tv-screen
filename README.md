@@ -3,7 +3,7 @@ Chess TV Screen
 
 SmartTV application that shows the chess board from the Android application "Chess" (https://github.com/jcarolus/android-chess)
 
-Simple javascript inject polling to the Android application which returns the board FEN string in a JSONP response.
+Simple javascript xhr polling to the Android application which returns the board FEN string in a JSON response.
 
 Target platform: Samsung SmartHub
 
