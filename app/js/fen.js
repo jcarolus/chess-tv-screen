@@ -1,5 +1,7 @@
 (function(window) {
 
+    window.app = window.app || {};
+    
     window.loadFEN = function(sFEN, selector, squareSize) {
 
         var getPos = function(col) {

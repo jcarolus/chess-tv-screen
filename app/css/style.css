@@ -8,3 +8,38 @@ body {
 	padding: 0px;
 	overflow: hidden;
 }
+
+.container {
+    position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 1280px;
+	height: 720px;
+	overflow: hidden;
+}
+
+.layer {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 1280px;
+	height: 720px;
+    background-color: #484848;
+    z-index: 0;
+}
+
+.layer.loading {
+    display: block;
+    z-index: 1;
+}
+
+body.connected .layer.chess-board{
+    display: block;
+    z-index: 2;
+}
+
+body.not-connected .layer.no-connection{
+    display: block;
+    z-index: 2;
+}
+

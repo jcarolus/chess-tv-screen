@@ -6,15 +6,22 @@
     <link rel="stylesheet" type="text/css" media="screen" href="css/style.css"></link>
     <link rel="stylesheet" type="text/css" media="screen" href="css/chess.css"></link>
 	<script type="text/javascript" src="js/fen.js"></script>
+    <script type="text/javascript" src="js/samsung.js"></script>
+    <script type="text/javascript" src="js/poll.js"></script>
     <script type="text/javascript" src="js/app.js"></script>
-	<script>
-// hard coded IP and port of the Android device until the DIAL param can be fetched
-var pollUrl = 'http://192.168.178.23:8092/';
-	</script>
 </head>
-<body onload="start();">
-<div id="container">
-	<div id="board"></div>
-</div>
+<body onload="window.app.onLoad();">
+    
+    <div class="container">
+        <div class="layer chess-board">
+            <div id="board"></div>
+        </div>
+        <div class="layer no-connection">
+            There is no connection to your Android device
+        </div>
+        <div class="layer no-device">
+            The TV is not paired with your Android device
+        </div>
+    </div>
 </body>
 </html>
