@@ -15,7 +15,8 @@
     };
 
     window.app.start = function() {
-        window.app.poll();
+        window.app.initNav();
+        //window.app.poll();
     }
     
     window.app.prepareDevice();

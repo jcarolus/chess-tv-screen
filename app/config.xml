@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <widget xmlns="http://www.samsung.com/">
-  <ThumbIcon itemtype="string">images/IconImage_512x423.png</ThumbIcon>
-  <BigThumbIcon itemtype="string">images/BigThumbIcon_115x95.png</BigThumbIcon>
-  <ListIcon itemtype="string">images/ListIcon_85x70.png</ListIcon>
-  <BigListIcon itemtype="string">images/BigListIcon_95x78.png</BigListIcon>
+  <ThumbIcon itemtype="string">images/logo_512x423.png</ThumbIcon>
+  <BigThumbIcon itemtype="string">images/logo_115x95.png</BigThumbIcon>
+  <ListIcon itemtype="string">images/logo_85x70.png</ListIcon>
+  <BigListIcon itemtype="string">images/logo_95x78.png</BigListIcon>
   <category itemtype="string">games</category>
   <type itemtype="string">user</type>
   <cpname itemtype="string">jwtc</cpname>
