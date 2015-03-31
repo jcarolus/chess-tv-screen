@@ -1,0 +1,39 @@
+.keypad {
+    position: absolute;
+    top: 100px;
+    right: 100px;
+}
+
+.keypad .input {
+    background-color: #666;
+    line-height: 50px;
+    text-align: center;
+    clear: left;
+    float: left;
+    width: 210px;
+    height: 50px;
+    margin: 5px;
+}
+
+.keypad .ok {
+    float: left;
+    margin: 5px;
+    width: 60px;
+    text-align: center;
+    line-height: 50px;
+}
+
+.keypad .key, .keypad .keyDel {
+    float: left;
+    width: 60px;
+    text-align: center;
+    line-height: 50px;
+    margin: 5px;
+    background-color: #666;
+    border: 2px solid #666;
+    color: #f1f1f1;
+}
+
+.keypad .key.first, .keypad .keyDel.first {
+    clear: left;
+}

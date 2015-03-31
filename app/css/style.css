@@ -26,19 +26,48 @@ body {
 	height: 720px;
     background-color: #484848;
     z-index: 0;
+    box-shadow: inset 0px 0px 60px #333;
 }
 
-.layer.loading {
+body.loading .layer.loading {
     display: block;
     z-index: 1;
 }
 
-body.connected .layer.chess-board{
+.layer.loading .explain{
+    width: 1180px;
+    text-align: center;
+}
+
+body.connected .layer.connected{
     display: block;
     z-index: 2;
 }
 
-body.not-connected .layer.no-connection{
+body.no-connection .layer.no-connection{
     display: block;
     z-index: 2;
+}
+
+.nav {
+    border: 2px solid #666; 
+    cursor: pointer;
+}
+.nav.focus {
+    border: 2px solid #f1f1f1 !important;   
+}
+
+.explain {
+    position: absolute;
+    top: 100px;
+    left: 100px;
+    width: 500px;
+}
+
+span.link {
+    color: #97C03D;
+}
+
+span.head {
+    line-height: 40px;   
 }

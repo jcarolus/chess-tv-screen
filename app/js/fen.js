@@ -2,7 +2,7 @@
 
     window.app = window.app || {};
     
-    window.loadFEN = function(sFEN, selector, squareSize) {
+    window.app.loadFEN = function(sFEN, selector, squareSize) {
 
         var getPos = function(col) {
             var row = 0;

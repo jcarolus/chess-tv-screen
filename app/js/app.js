@@ -16,7 +16,7 @@
 
     window.app.start = function() {
         window.app.initNav();
-        //window.app.poll();
+        window.app.poll();
     }
     
     window.app.prepareDevice();

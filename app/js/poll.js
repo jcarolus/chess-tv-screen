@@ -13,52 +13,44 @@
         }
         return false;
     };
-    
-    // hard coded IP and port of the Android device until the DIAL param can be fetched
-    var LANCode = queryParam('LANCode');
-    var pollUrl = false; 
-    
-    if(false === LANCode){
-        LANCode = '19216817802392';
-    }
-    
-    if(LANCode && LANCode.length == 14){
-        pollUrl = 'http://' + 
-            parseInt(LANCode.substr(0, 3)) + '.' + 
-            parseInt(LANCode.substr(3, 3)) + '.' + 
-            parseInt(LANCode.substr(6, 3)) + '.' + 
-            parseInt(LANCode.substr(9, 3)) + ':80' + 
-            parseInt(LANCode.substr(12, 2)) + '.';
-    } 
+
+    var pollUrl = false;
+
+    window.app.setPollUrl = function(LANCode) {
+        if (LANCode && LANCode.length == 14) {
+            pollUrl = 'http://' +
+                parseInt(LANCode.substr(0, 3)) + '.' +
+                parseInt(LANCode.substr(3, 3)) + '.' +
+                parseInt(LANCode.substr(6, 3)) + '.' +
+                parseInt(LANCode.substr(9, 3)) + ':80' +
+                parseInt(LANCode.substr(12, 2));
+        }
+    };
+
+    window.app.setPollUrl(queryParam('LANCode') || (queryParam('debug') ? '19216817802392' : false));
 
     var lastFEN = false;
 
-    // JSONP callback from Android Chess app
-    window.ChessCallBack = function(data) {
-        debug('Got FEN ' + data.FEN);
-        if (lastFEN != data.FEN) {
-            loadFEN(data.FEN, 'board', 70);
-            lastFEN = data.FEN;
-        }
-    };
-    
-
     var xhrGet = function(url, onSuccess, onError) {
-        var xhr = new XMLHttpRequest();
-
-        xhr.open('GET', url, true);
-        xhr.setRequestHeader('Accept', 'application/json');
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState == 4) {
-                if (xhr.status == 200) {
-                    onSuccess(xhr.responseText);
-                } else {
-                    onError(xhr.status);
+        try {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', url, true);
+            xhr.setRequestHeader('Accept', 'application/json');
+            xhr.timeout = 10000;
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4) {
+                    if (xhr.status == 200) {
+                        onSuccess(xhr.responseText);
+                    } else {
+                        onError(xhr.status);
+                    }
                 }
-            }
-        };
-
-        xhr.send();
+            };
+            xhr.send();
+        } catch (ex) {
+            debug('xhr caught ' + ex);
+            onError(0);
+        }
     };
 
     window.app.poll = function() {
@@ -69,7 +61,12 @@
             xhrGet(pollUrl, function(responseText) {
                 document.body.className = "connected";
                 try {
-                    ChessCallBack(JSON.parse(responseText));
+                    var data = JSON.parse(responseText);
+                    debug('Got FEN ' + data.FEN);
+                    if (lastFEN != data.FEN) {
+                        window.app.loadFEN(data.FEN, 'board', 70);
+                        lastFEN = data.FEN;
+                    }
                 } catch (ex) {
                     debug(ex);
                 }
@@ -77,16 +74,17 @@
                     window.app.poll();
                 }, 1000);
             }, function(status) {
+                debug('xhr status ' + status);
 
-                if (pollUrl) {
-                    document.body.className = "not-connected";
-                }
+                document.body.className = "no-connection";
+
                 setTimeout(function() {
                     window.app.poll();
                 }, 5000);
             });
         } else {
             document.body.className = "no-device";
+            app.setFocus('.input');
         }
     };
 

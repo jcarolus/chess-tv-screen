@@ -15,6 +15,10 @@
         loadJS('$MANAGER_WIDGET/Common/API/Widget.js');
         loadJS('$MANAGER_WIDGET/Common/API/Plugin.js');
     };
+    
+    window.app.exit = function(){
+        debug('app.exit - not initialized');
+    };
 
     window.app.initDevice = function() {
 
@@ -50,6 +54,21 @@
                     window.VK_BACK = tvKey.KEY_RETURN;
                     window.VK_EXIT = tvKey.KEY_EXIT;
                     
+                    window.VK_0 = tvKey.KEY_0;
+                    window.VK_1 = tvKey.KEY_1;
+                    window.VK_2 = tvKey.KEY_2;
+                    window.VK_3 = tvKey.KEY_3;
+                    window.VK_4 = tvKey.KEY_4;
+                    window.VK_5 = tvKey.KEY_5;
+                    window.VK_6 = tvKey.KEY_6;
+                    window.VK_7 = tvKey.KEY_7;
+                    window.VK_8 = tvKey.KEY_8;
+                    window.VK_9 = tvKey.KEY_9;
+                    
+                    window.app.exit = function(){
+                        widgetAPI.sendExitEvent();
+                    };
+                    
                 } catch (ex) {
                     debug(ex);
                 }
@@ -64,13 +83,6 @@
 
                     try {
                         plugin.registKey(tvKey.KEY_EXIT);
-
-                        document.addEventListener('keydown', function(e) {
-                            if (e.keyCode == tvKey.KEY_EXIT) {
-                                widgetAPI.sendExitEvent();
-                            }
-                        });
-
                     } catch (ex) {
                         debug(ex);
                     }
