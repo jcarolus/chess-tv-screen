@@ -2,10 +2,10 @@
     position: absolute;
     top: 100px;
     right: 100px;
+    width: 450px;
 }
 
 .keypad .input {
-    background-color: #666;
     line-height: 50px;
     text-align: center;
     clear: left;
@@ -29,8 +29,6 @@
     text-align: center;
     line-height: 50px;
     margin: 5px;
-    background-color: #666;
-    border: 2px solid #666;
     color: #f1f1f1;
 }
 

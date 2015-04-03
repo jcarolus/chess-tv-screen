@@ -9,7 +9,7 @@
   <cpname itemtype="string">jwtc</cpname>
   <cplogo itemtype="string">static/logo_125x125.png</cplogo>
   <cpauthjs itemtype="string"></cpauthjs>
-  <ver itemtype="string">1.025</ver>
+  <ver itemtype="string">1.000</ver>
   <mgrver itemtype="string"></mgrver>
   <fullwidget itemtype="boolean">y</fullwidget>
   <srcctl itemtype="boolean">y</srcctl>
