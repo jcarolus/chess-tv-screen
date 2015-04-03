@@ -22,16 +22,15 @@
     window.app = window.app || {};
 
     window.app.prepareDevice = function() {
-        debug('prepare device');
+        console.log('prepare device');
     };
 
     window.app.exit = function() {
-        debug('app.exit');
+        console.log('app.exit');
     };
 
     window.app.initDevice = function() {
-
-        debug('init device');
+        console.log('init device');
         window.app.start();
     };
 

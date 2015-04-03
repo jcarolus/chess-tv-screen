@@ -37,7 +37,7 @@ body.loading .layer.loading {
     z-index: 1;
 }
 
-.layer.loading .explain{
+.layer.loading .explain,  .layer.no-connection .explain{
     width: 1180px;
     text-align: center;
 }
@@ -70,6 +70,7 @@ body.no-connection .layer.no-connection{
     height: 50px;
     line-height: 50px;
     text-align: center;
+    z-index: 3;
 }
 
 .explain {

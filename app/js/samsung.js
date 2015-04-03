@@ -3,7 +3,7 @@
     window.app = window.app || {};
 
     window.app.prepareDevice = function() {
-        debug('prepare device');
+        console.log('prepare device');
 
         var loadJS = function(src) {
             var script = document.createElement('script');
@@ -17,12 +17,12 @@
     };
     
     window.app.exit = function(){
-        debug('app.exit - not initialized');
+        console.log('app.exit - not initialized');
     };
 
     window.app.initDevice = function() {
 
-        debug('init device');
+        console.log('init device');
         var loadObj = function(id, clsid) {
             var obj = document.createElement('object');
             obj.id = id;
@@ -35,11 +35,11 @@
         loadObj('pluginObjectTVMW', 'clsid:SAMSUNG-INFOLINK-TVMW');
 
         var network = loadObj('pluginObjectNetwork ', 'clsid:SAMSUNG-INFOLINK-NETWORK');
-        debug(network.GetIP(1) || network.GetIP(0));
+        console.log(network.GetIP(1) || network.GetIP(0));
 
         var tries = 0;
         var doCommon = function(){
-            debug('doCommon');
+            console.log('doCommon');
             if (typeof(Common) !== 'undefined' && Common.API && Common.API.Plugin && Common.API.Widget) {
                 try {
                     var tvKey = new Common.API.TVKeyValue();
@@ -70,7 +70,7 @@
                     };
                     
                 } catch (ex) {
-                    debug(ex);
+                    console.log(ex);
                 }
 
                 var onShowCalled = false;
@@ -84,7 +84,7 @@
                     try {
                         plugin.registKey(tvKey.KEY_EXIT);
                     } catch (ex) {
-                        debug(ex);
+                        console.log(ex);
                     }
 
                     window.app.start();
@@ -98,14 +98,14 @@
                 try {
                     widgetAPI.sendReadyEvent();
                 } catch (ex) {
-                    debug(ex);
+                    console.log(ex);
                 }
             } else {
                 if(tries < 2){
                     tries++;
                     setTimeout(doCommon, 100); 
                 } else {
-                    debug('Tried to init device... failed...');   
+                    console.log('Tried to init device... failed...');   
                 }
             }
         };

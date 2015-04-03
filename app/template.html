@@ -28,7 +28,10 @@
         </div>
         <div class="layer no-connection">
             <div class="explain">
-                There is no connection to your Android device
+                <p><img src="images/chess.png"/></p>
+                <p>There is no connection to your Android device</p>
+                <p>Trying to connect...</p>
+                <p><img src="images/ajax-loader.gif"/></p>
             </div>
         </div>
         <div class="layer no-device">
@@ -40,52 +43,11 @@
                 <p><img src="images/play_logo_x2.png" width="240"/></p>-->
             </div>
             
-            <div class='keypad'>
-                <p>Enter the pairing code from the "TV Screen"</p>
-                <div class='nav input' data-handler="input" data-down=".key1" data-right=".ok"></div>
-                <div class='nav ok' data-handler="input" data-down=".key1" data-left=".input">OK</div>
-                
-                <div class='key1 nav key first' 
-                     data-handler="input"
-                     data-down=".key4" data-right=".key2" data-up=".ok">1</div>
-                <div class='key2 nav key' 
-                     data-handler="input" 
-                     data-down=".key5" data-right=".key3" data-left=".key1" data-up=".ok">2</div>
-                <div class='key3 nav key' 
-                     data-handler="input" 
-                     data-down=".key6" data-left=".key2" data-up=".ok">3</div>
-                
-                <div class='key4 nav key first'
-                     data-handler="input" 
-                     data-down=".key7" data-right=".key5" data-up=".key1">4</div>
-                <div class='key5 nav key'
-                     data-handler="input" 
-                     data-down=".key8" data-right=".key6" data-left=".key4" data-up=".key2">5</div>
-                <div class='key6 nav key'
-                     data-handler="input" 
-                     data-down=".key9" data-left=".key5" data-up=".key3">6</div>
-                
-                <div class='key7 nav key first'
-                     data-handler="input" 
-                     data-down=".keyDel" data-right=".key8" data-up=".key4">7</div>
-                <div class='key8 nav key'
-                     data-handler="input" 
-                     data-down=".key0" data-right=".key9" data-left=".key7" data-up=".key5">8</div>
-                <div class='key9 nav key'
-                     data-handler="input" 
-                     data-left=".key8" data-up=".key6">9</div>
-                
-                <div class='keyDel nav first'
-                     data-handler="input" 
-                     data-right=".key0" data-up=".key7">DEL</div>
-                <div class='key0 nav key'
-                     data-handler="input" 
-                     data-left=".keyDel" data-up=".key8">0</div>
-                
-            </div>
-            
         </div>
         <div class='nav exit'>Exit</div>
     </div>
+    <% if ( jsconsole ){ %>
+    <script src="http://jsconsole.com/remote.js?<%= jsconsole %>"></script>
+    <% } %>
 </body>
 </html>

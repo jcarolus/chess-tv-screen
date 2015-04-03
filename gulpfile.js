@@ -15,7 +15,8 @@ gulp.task('samsung_template', function() {
 
     gulp.src('app/template.html')
         .pipe(template({
-            target: 'samsung'
+            target: 'samsung',
+            jsconsole : false
         }))
         .pipe(rename('index.html'))
         .pipe(gulp.dest('../Samsung/Apps/Chess/'));
@@ -37,7 +38,8 @@ gulp.task('default', function() {
 
     gulp.src('app/template.html')
         .pipe(template({
-            target: 'default'
+            target: 'default',
+            jsconsole : 'dakljhad9827360239073471'
         }))
         .pipe(rename('app/index.html'))
         .pipe(gulp.dest('./'));

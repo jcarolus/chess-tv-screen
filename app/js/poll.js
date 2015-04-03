@@ -48,33 +48,33 @@
             };
             xhr.send();
         } catch (ex) {
-            debug('xhr caught ' + ex);
+            console.log('xhr caught ' + ex);
             onError(0);
         }
     };
 
     window.app.poll = function() {
 
-        debug('Polling: ' + pollUrl);
+        console.log('Polling: ' + pollUrl);
 
         if (pollUrl) {
             xhrGet(pollUrl, function(responseText) {
                 document.body.className = "connected";
                 try {
                     var data = JSON.parse(responseText);
-                    debug('Got FEN ' + data.FEN);
+                    console.log('Got FEN ' + data.FEN);
                     if (lastFEN != data.FEN) {
                         window.app.loadFEN(data.FEN, 'board', 70);
                         lastFEN = data.FEN;
                     }
                 } catch (ex) {
-                    debug(ex);
+                    console.log(ex);
                 }
                 setTimeout(function() {
                     window.app.poll();
                 }, 1000);
             }, function(status) {
-                debug('xhr status ' + status);
+                console.log('xhr status ' + status);
 
                 document.body.className = "no-connection";
 
@@ -84,7 +84,6 @@
             });
         } else {
             document.body.className = "no-device";
-            app.setFocus('.input');
         }
     };
 
