@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.samsung.com/">
+  <ThumbIcon itemtype="string">images/logo_512x423.png</ThumbIcon>
+  <BigThumbIcon itemtype="string">images/logo_115x95.png</BigThumbIcon>
+  <ListIcon itemtype="string">images/logo_85x70.png</ListIcon>
+  <BigListIcon itemtype="string">images/logo_95x78.png</BigListIcon>
+  <category itemtype="string">games</category>
+  <type itemtype="string">user</type>
+  <cpname itemtype="string">jwtc</cpname>
+  <cplogo itemtype="string">static/logo_125x125.png</cplogo>
+  <cpauthjs itemtype="string"></cpauthjs>
+  <ver itemtype="string">1.000</ver>
+  <mgrver itemtype="string"></mgrver>
+  <fullwidget itemtype="boolean">y</fullwidget>
+  <srcctl itemtype="boolean">y</srcctl>
+  <ticker itemtype="boolean">n</ticker>
+  <childlock itemtype="boolean">n</childlock>
+  <audiomute itemtype="boolean">n</audiomute>
+  <videomute itemtype="boolean">n</videomute>
+    <widgetname itemtype="string">Chess TV Screen</widgetname>
+  <description itemtype="string"></description>
+  <width itemtype="number">1280</width>
+  <height itemtype="number">720</height>
+  <author itemtype="group">
+    <name itemtype="string">Jeroen Carolus</name>
+    <email itemtype="string">info@jwtc.nl</email>
+    <link itemtype="string">http://www.jwtc.nl/</link>
+    <organization itemtype="string">jwtc</organization>
+  </author>
+  <network>y</network>
+  <autoUpdate itemtype="boolean">y</autoUpdate>
+  <runTitle>nl.jwtc.chess</runTitle>
+</widget>

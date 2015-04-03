@@ -1,15 +1,47 @@
 // Some Gulp automation for packaging the app for different TV platforms
 
 var gulp = require('gulp'),
-    path = require('path'),
-    gutil = require('gulp-util'),
-    fs = require('fs'),
-    concat = require("gulp-concat");
+    //path = require('path'),
+    //gutil = require('gulp-util'),
+    //fs = require('fs'),
+    //concat = require('gulp-concat'),
+    template = require('gulp-template'),
+    rename = require('gulp-rename'),
+    filter = require('gulp-filter'),
+    watch = require('gulp-watch');
 
 
-gulp.task('default', function() {
-  // place code for your default task here
-    console.log('doing default');
-    //gulp.start('concat', 'cssmin', 'uglify');
+gulp.task('samsung_template', function() {
+
+    gulp.src('app/template.html')
+        .pipe(template({
+            target: 'samsung',
+            jsconsole : false
+        }))
+        .pipe(rename('index.html'))
+        .pipe(gulp.dest('../Samsung/Apps/Chess/'));
+
 });
 
+gulp.task('samsung', ['samsung_template'], function() {
+
+    gulp.src(['**/*'], {
+        base: 'app'
+    })
+    .pipe(filter(['**/*', '!*.html']))
+    //.pipe(watch('**/*', {verbose: true}))
+    .pipe(gulp.dest('../Samsung/Apps/Chess/'));
+
+});
+
+gulp.task('default', function() {
+
+    gulp.src('app/template.html')
+        .pipe(template({
+            target: 'default',
+            jsconsole : 'dakljhad9827360239073471'
+        }))
+        .pipe(rename('app/index.html'))
+        .pipe(gulp.dest('./'));
+
+});
