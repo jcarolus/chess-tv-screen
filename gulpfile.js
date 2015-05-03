@@ -2,46 +2,65 @@
 
 var gulp = require('gulp'),
     //path = require('path'),
-    //gutil = require('gulp-util'),
+    gutil = require('gulp-util'),
     //fs = require('fs'),
-    //concat = require('gulp-concat'),
-    template = require('gulp-template'),
-    rename = require('gulp-rename'),
-    filter = require('gulp-filter'),
-    watch = require('gulp-watch');
+    concat = require('gulp-concat'),
+    uglify = require('gulp-uglify'),
+    minifyCSS = require('gulp-minify-css'),
+    //template = require('gulp-template'),
+    //rename = require('gulp-rename'),
+    //filter = require('gulp-filter'),
+    //watch = require('gulp-watch'),
+    copy = require('gulp-copy'),
+    usemin = require('gulp-usemin'),
+    include = require('gulp-include'),
+    debug = require('gulp-debug');
+//copy = require('gulp-copy');
 
+var target = gutil.env.target;
 
-gulp.task('samsung_template', function() {
+if (!target || !(target === 'default' || target === 'samsung')) {
+    gutil.log(gutil.colors.red('\n====\nPlease provide --target=default|samsung\n====\n'));
+    return;
+}
 
-    gulp.src('app/template.html')
-        .pipe(template({
-            target: 'samsung',
-            jsconsole : false
-        }))
-        .pipe(rename('index.html'))
-        .pipe(gulp.dest('../Samsung/Apps/Chess/'));
+var arrJS = ["app/js/light.js",
+    "app/js/fen.js",
+    "app/js/" + target + ".js",
+    "app/js/nav.js",
+    "app/js/poll.js",
+    "app/js/app.js"
+];
 
+gulp.task('minify', function() {
+    gulp.src(['app/css/**/*.css', "!app/css/*.min.css"])
+        .pipe(concat('app.min.css'))
+        .pipe(minifyCSS())
+        .pipe(gulp.dest('./app/css/'))
+        .pipe(gulp.dest('./targets/' + target + '/css/'));
+
+    gulp.src(arrJS)
+        .pipe(concat('app.min.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest('./app/js/'))
+        .pipe(gulp.dest('./targets/' + target + '/js/'));
+    
 });
 
-gulp.task('samsung', ['samsung_template'], function() {
-
-    gulp.src(['**/*'], {
-        base: 'app'
-    })
-    .pipe(filter(['**/*', '!*.html']))
-    //.pipe(watch('**/*', {verbose: true}))
-    .pipe(gulp.dest('../Samsung/Apps/Chess/'));
-
+gulp.task('copysamsung', function(){
+   gulp.src('**/*.*', {cwd : './targets/samsung/'})
+        .pipe(gulp.dest('/Users/jcarolus/htdocs/host.vbox001/Samsung/Apps/Chess/')); 
 });
 
-gulp.task('default', function() {
+gulp.task('default', ['minify'], function() {
 
-    gulp.src('app/template.html')
-        .pipe(template({
-            target: 'default',
-            jsconsole : 'dakljhad9827360239073471'
-        }))
-        .pipe(rename('app/index.html'))
-        .pipe(gulp.dest('./'));
+    gulp.src('./images/**/*.*', {cwd : './app/', base: './app'})
+        //.pipe(debug())
+        .pipe(copy('./targets/' + target + '/'));
+    
+    gulp.src(['./app/index.html'])
+        .pipe(include())
+        .pipe(usemin())
+        .pipe(gulp.dest('./targets/' + target + '/'));
 
 });

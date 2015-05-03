@@ -16,8 +16,8 @@
     window.app.start = function() {
         window.app.initNav();
         window.app.poll();
-    }
+    };
     
     window.app.prepareDevice();
 
-})(window);
+})(this);

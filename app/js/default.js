@@ -34,4 +34,4 @@
         window.app.start();
     };
 
-})(window);
+})(this);

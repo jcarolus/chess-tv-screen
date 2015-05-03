@@ -1,4 +1,4 @@
-(function(window) {
+(function(window, document) {
 
     window.app = window.app || {};
 
@@ -91,7 +91,7 @@
                 };
 
                 // for emulator
-                setTimeout(function() {
+                window.setTimeout(function() {
                     onShow();
                 }, 2000);
 
@@ -113,4 +113,4 @@
         doCommon();
     };
 
-})(window);
+})(this, this.document);
